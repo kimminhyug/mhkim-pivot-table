@@ -236,7 +236,7 @@ export const Pivot = <T extends object>({
             }}
           >
             <div className="pivot-config-box-title">
-              common:dashboard.pivot.columns
+                pivot.columns
             </div>
             <div className="pivot-column-list">{getColumns()}</div>
           </div>
@@ -251,7 +251,7 @@ export const Pivot = <T extends object>({
             }}
           >
             <div className="pivot-config-box-title">
-              common:dashboard.pivot.group
+              pivot.group
             </div>
             <ChoiceList
               options={choiceListOptions}
