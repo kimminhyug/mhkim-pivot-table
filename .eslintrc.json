@@ -1,0 +1,9 @@
+{
+  "extends": ["next", "prettier", "plugin:@typescript-eslint/recommended"],
+  "plugins": ["prettier"],
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "parserOptions": { "ecmaVersion": 7, "sourceType": "module" },
+  "env": { "browser": false, "node": true },
+  "ignorePatterns": ["node_modules/"],
+  "rules": { "prettier/prettier": ["error", { "endOfLine": "auto" }] }
+}

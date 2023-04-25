@@ -1,9 +1,4 @@
 {
-  "babel": {
-    "presets": [
-      "@babel/preset-react"
-    ]
-  },
   "browserslist": {
     "development": [
       "last 1 chrome version",
@@ -22,12 +17,22 @@
     "@testing-library/user-event": "^13.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
+    "typescript": "^5.0.2",
     "web-vitals": "^2.1.4"
+  },
+  "overrides": {
+    "typescript": "^5.0.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.21.0",
-    "@babel/preset-react": "^7.18.6"
+    "@babel/preset-react": "^7.18.6",
+    "@types/lodash": "^4.14.194",
+    "@types/react": "^18.0.33",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "lodash": "^4.17.21",
+    "sass": "^1.60.0"
   },
   "eslintConfig": {
     "extends": [
@@ -44,5 +49,17 @@
     "start": "react-scripts start",
     "test": "react-scripts test"
   },
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "author": {
+    "name": "Kim MinHyeok",
+    "email": "kimminhyug29@gmail.com",
+    "url": ""
+  },
+  "keywords": [
+    "pivot"
+  ],
+  "license": "MIT",
+  "compilerOptions": {
+    "allowImportingTsExtensions": "true"
+  }
 }
