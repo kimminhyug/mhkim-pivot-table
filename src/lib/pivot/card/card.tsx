@@ -2,7 +2,9 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Paragraph } from "../paragraph/paragraph";
 import { IPivotCardProps } from "./types/card";
 import { defaultSort } from "../utils/sort/sort";
+import { CollapseMinusIcon, CollapsePlusIcon } from "assets/svg/svg";
 
+// import { ReactComponent as PlusIcon } from "/src/assets/svg/collapse-plus-icon.svg";
 export const PivotCard = ({
   groupKey = "",
   selectedColumns = [],
@@ -23,6 +25,7 @@ export const PivotCard = ({
   const [collapseStatus, setCollapseStatus] = useState<{
     [key: string]: string;
   }>({});
+
   // 하위에 그룹이 남았을 경우
   const isObjectTotal =
     collapseStatus[groupKey] === "none" && !Array.isArray(_items);
@@ -80,7 +83,9 @@ export const PivotCard = ({
         ),
         key: "order",
         order: "asc",
-      }).map((data) => data.key);
+      }).map((data) => {
+        return data.key;
+      });
 
       const isFirst = index === 0;
       return {
@@ -230,9 +235,14 @@ export const PivotCard = ({
     const isNone = collapseStatus[groupKey] === "none";
 
     setClickStatus((_clickStatus) => {
-      isNone
-        ? ((_clickStatus.open = "click"), (_clickStatus.close = ""))
-        : ((_clickStatus.open = ""), (_clickStatus.close = "click"));
+      if (isNone) {
+        _clickStatus.open = "click";
+        _clickStatus.close = "";
+      } else {
+        _clickStatus.open = "";
+        _clickStatus.close = "click";
+      }
+
       return _clickStatus;
     });
     setCollapseStatus((prev) => {
@@ -260,13 +270,23 @@ export const PivotCard = ({
       <div>
         <div className="card-title" onClick={handleClickCollapseKey}>
           <div
-            style={{ position: "absolute", display: "inline-block" }}
-            className={`card-animation open ${clickStatus.open}`}
-          />
+            className={`collapse-icon-container card-animation open ${clickStatus.open}`}
+          >
+            <CollapsePlusIcon
+              width={12}
+              height={12}
+              className={`collapse-icon ${theme}`}
+            />
+          </div>
           <div
-            style={{ position: "absolute", display: "inline-block" }}
-            className={`card-animation close ${clickStatus.close}`}
-          />
+            className={`collapse-icon-container card-animation close ${clickStatus.close}`}
+          >
+            <CollapseMinusIcon
+              width={12}
+              height={12}
+              className={`collapse-icon ${theme}`}
+            />
+          </div>
 
           <span style={{ minWidth: 135, marginLeft: 17 }}>{GroupHeader()}</span>
           {isObjectTotal && (
@@ -276,9 +296,7 @@ export const PivotCard = ({
                   <div key={index}>
                     <span>{key}:</span>{" "}
                     <span>
-                      {" "}
-                      {items[key]?.length ||
-                        Object.keys(items[key]).length}{" "}
+                      {items[key]?.length || Object.keys(items[key]).length}{" "}
                       count
                     </span>
                   </div>
@@ -303,7 +321,7 @@ export const PivotCard = ({
         </div>
         <div
           className="content-container"
-          style={{ overflow: "scroll", display: collapseStatus[groupKey] }}
+          style={{ display: collapseStatus[groupKey] }}
         >
           {getContents()}
         </div>

@@ -1,15 +1,10 @@
 import React, { useEffect, useCallback, useState } from "react";
 import { PivotCard } from "./card/card";
-
-import { groupBy, Dictionary, merge } from "lodash";
-
+import { groupBy, Dictionary } from "lodash";
 import { IPivotProps } from "./types/pivot.types";
 import { defaultSort } from "./utils/sort/sort";
 import { ChoiceList } from "./utils/choice-list/choice-list";
-import {
-  IChoiceListOption,
-  IChoiceListProps,
-} from "./utils/choice-list/types/choice-list.types";
+import { IChoiceListOption } from "./utils/choice-list/types/choice-list.types";
 
 export const Pivot = <T extends object>({
   pivotItem = [],
@@ -26,7 +21,7 @@ export const Pivot = <T extends object>({
   const [selectedColumns, setSelectedColumns] = useState<string[]>(
     defaultSelectedColumns
   );
-  const [pivotIndex, setPivotIndex] = useState(0);
+
   const [pivotDropdownOptions, setPivotDropdownOptions] = useState<
     { key: string; text: string }[]
   >([]);
@@ -88,15 +83,6 @@ export const Pivot = <T extends object>({
     }
   }, [pivotDropdownOptions]);
 
-  useEffect(() => {
-    if (!selectedPivotKey) return;
-    setPivotIndex(
-      pivotDropdownOptions.findIndex((options) => {
-        return options.key === selectedPivotKey;
-      })
-    );
-  }, [selectedPivotKey]);
-
   const currentGroupItem = (currentItem, groupKey) => {
     const keys = Object.keys(currentItem);
     const result = {};
@@ -142,9 +128,23 @@ export const Pivot = <T extends object>({
     setGroupData(flushSelectedGroupKey(pivotItem));
   }, [collapseKeys, pivotItem]);
 
+  const handleClickCheckboxContainer = (
+    ev?: React.FormEvent<HTMLDivElement>
+  ) => {
+    const eventKey = (ev?.currentTarget as HTMLDivElement).dataset.key;
+    setSelectedColumns((prev) => {
+      const isSelected =
+        prev.findIndex((selectedKey) => selectedKey === eventKey) !== -1;
+      if (isSelected) {
+        return prev.filter((selectedKey) => selectedKey !== eventKey);
+      } else {
+        return [...prev, eventKey];
+      }
+    });
+  };
+
   const handleChangeSelectedColumns = (
     ev?: React.FormEvent<HTMLInputElement>
-    // isChecked?: boolean
   ) => {
     const name = (ev?.currentTarget as HTMLInputElement).name;
     if (!name) return;
@@ -167,8 +167,12 @@ export const Pivot = <T extends object>({
     });
     return filteredColDefs.map((colDef, index) => {
       return (
-        <>
-          <span>{colDef.text}</span>
+        <div
+          className="checkbox-container"
+          data-key={colDef.key}
+          key={index}
+          onClick={handleClickCheckboxContainer}
+        >
           <input
             key={index}
             type="checkbox"
@@ -176,14 +180,8 @@ export const Pivot = <T extends object>({
             onChange={handleChangeSelectedColumns}
             checked={isSelectedColumn(colDef)}
           />
-        </>
-        // <Checkbox
-        //   key={index}
-        //   name={colDef.key}
-        //   label={colDef.text}
-        //   onChange={handleChangeSelectedColumns}
-        //   checked={isSelectedColumn(colDef)}
-        // />
+          <span>{colDef.text}</span>
+        </div>
       );
     });
   }, [colDefs, selectedColumns, collapseKeys]);
@@ -215,7 +213,7 @@ export const Pivot = <T extends object>({
   };
 
   return (
-    <div style={{ display: "flex", width: "100%", height: "100%" }}>
+    <div className={`pivot-container ${theme}`}>
       <div className={`pivot-contents ${theme}`}>{getPivotCard()}</div>
       {showConfig && (
         <div
@@ -235,9 +233,7 @@ export const Pivot = <T extends object>({
               minHeight: "150px",
             }}
           >
-            <div className="pivot-config-box-title">
-                pivot.columns
-            </div>
+            <div className="pivot-config-box-title">Columns</div>
             <div className="pivot-column-list">{getColumns()}</div>
           </div>
 
@@ -250,9 +246,7 @@ export const Pivot = <T extends object>({
               minHeight: "300px",
             }}
           >
-            <div className="pivot-config-box-title">
-              pivot.group
-            </div>
+            <div className="pivot-config-box-title">Groups</div>
             <ChoiceList
               options={choiceListOptions}
               theme={theme}

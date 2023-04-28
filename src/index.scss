@@ -1,5 +1,44 @@
+/* light */
+$light-font-color: rgb(50, 49, 48);
+$light-pivot-container-background: #cbced3bc;
 $light-pivot-background: white;
+
+/* dark */
+$dark-font-color: rgb(209, 209, 209);
+$dark-pivot-container-background: #585d6e;
 $dark-pivot-background: #2e313d;
+
+$border-transparent: 1px solid transparent;
+$hover-border-skyblue: 1px solid skyblue;
+
+.flex-container {
+  display: flex;
+}
+.gap-3 {
+  gap: 3px;
+}
+
+.pivot-container {
+  color: $light-font-color;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  gap: 3px;
+  margin: 0px 2px 0px 5px;
+  display: flex;
+  border-radius: 10px;
+  overflow: hidden;
+  min-height: calc(100% - 32px - 20px) !important;
+  background: $light-pivot-container-background;
+
+  scrollbar-color: #0a4c95 #c2d2e4;
+
+  &.dark {
+    color: $dark-font-color;
+    background: $dark-pivot-container-background;
+  }
+}
+
 .pivot-config-box {
   width: 100%;
   background: $light-pivot-background;
@@ -17,9 +56,20 @@ $dark-pivot-background: #2e313d;
     border-width: 0px 0px 2px 0px;
   }
 }
+
+.checkbox-container {
+  display: flex;
+  gap: 3px;
+  cursor: pointer;
+  border: $border-transparent;
+  &:hover {
+    border: $hover-border-skyblue;
+  }
+}
+
 .pivot-column-list {
   height: 100%;
-  overflow: scroll;
+  // overflow: scroll;
   display: flex;
   flex-direction: column;
 
@@ -36,7 +86,7 @@ $dark-pivot-background: #2e313d;
     padding: 5px;
   }
   width: 100%;
-  padding: 0px 10px 0px 0px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -55,9 +105,9 @@ $dark-pivot-background: #2e313d;
   text-overflow: ellipsis;
   overflow: hidden;
   cursor: pointer;
-  border: 1px solid transparent;
+  border: $border-transparent;
   &:hover {
-    border: 1px solid skyblue;
+    border: $hover-border-skyblue;
   }
 }
 .pivot-list-cell {
@@ -110,7 +160,7 @@ $dark-pivot-background: #2e313d;
 }
 
 .choice-list-container {
-  overflow-y: scroll;
+  // overflow-y: scroll;
   .choice-list-item-container {
     display: flex;
     padding: 5px;
@@ -127,15 +177,28 @@ $dark-pivot-background: #2e313d;
 
     .choice-list-item {
       width: 85%;
-      border: 1px solid transparent;
+      border: $border-transparent;
       &:hover {
-        border: 1px solid skyblue;
+        border: $hover-border-skyblue;
       }
     }
     .choice-list-icon {
     }
     .choice-list-item-index {
       font-weight: bolder;
+    }
+  }
+}
+.collapse-icon-container {
+  position: absolute;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  color: inherit;
+  .collapse-icon {
+    fill: $light-font-color;
+    &.dark {
+      fill: $dark-font-color;
     }
   }
 }
@@ -161,4 +224,21 @@ $dark-pivot-background: #2e313d;
     z-index: 5;
     // transform: rotateX(180deg);
   }
+}
+
+.pivot-container::-webkit-scrollbar,
+.pivot-container * ::-webkit-scrollbar {
+  width: 15px;
+  height: 15px;
+}
+
+.pivot-container::-webkit-scrollbar-track-piece,
+.pivot-container * ::-webkit-scrollbar-track-piece {
+  background-color: #c2d2e4;
+}
+
+.pivot-container::-webkit-scrollbar-thumb:vertical,
+.pivot-container * ::-webkit-scrollbar-thumb:vertical {
+  height: 30px;
+  background-color: #0a4c95;
 }
