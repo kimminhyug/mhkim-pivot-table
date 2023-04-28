@@ -1,7 +1,12 @@
 {
-  "extends": ["next", "prettier", "plugin:@typescript-eslint/recommended"],
+  "extends": [
+    "react-app",
+    "prettier",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "plugins": ["prettier"],
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "parser": "@babel/eslint-parser",
   "parserOptions": { "ecmaVersion": 7, "sourceType": "module" },
   "env": { "browser": false, "node": true },
   "ignorePatterns": ["node_modules/"],
