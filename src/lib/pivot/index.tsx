@@ -1,11 +1,13 @@
 import React, { useEffect, useCallback, useState } from "react";
 import { PivotCard } from "./card/card";
-import { groupBy, Dictionary } from "lodash";
+// import { groupBy, Dictionary } from "lodash";
+import groupBy from "lodash.groupBy";
+
 import { IPivotProps } from "./types/pivot.types";
 import { defaultSort } from "./utils/sort/sort";
 import { ChoiceList } from "./utils/choice-list/choice-list";
 import { IChoiceListOption } from "./utils/choice-list/types/choice-list.types";
-
+import "index.scss";
 export const Pivot = <T extends object>({
   pivotItem = [],
   groupKeys = [],
@@ -102,10 +104,10 @@ export const Pivot = <T extends object>({
       currentResult = currentGroupItem(currentResult, groupKey);
       result = currentResult;
     });
-    return result as Dictionary<any>;
+    return result as any;
   };
 
-  const flushSelectedGroupKey = (data): Dictionary<any[]> => {
+  const flushSelectedGroupKey = (data): any => {
     if (collapseKeys.length <= 0) return {};
     const readyItem = groupBy(data, collapseKeys[0]);
     const result =
@@ -116,7 +118,7 @@ export const Pivot = <T extends object>({
             [...collapseKeys].splice(1, collapseKeys.length)
           );
 
-    return result as Dictionary<any[]>;
+    return result as any;
   };
 
   useEffect(() => {
@@ -222,6 +224,7 @@ export const Pivot = <T extends object>({
             display: "flex",
             flexDirection: "column",
             gap: 3,
+            padding: "10px 10px 0px 0px",
           }}
         >
           <div

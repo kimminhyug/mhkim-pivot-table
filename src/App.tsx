@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Pivot } from "./lib/pivot/index";
+import { Pivot } from "../dist/index.js";
 
 function App() {
   return (

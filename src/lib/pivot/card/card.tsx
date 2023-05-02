@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Paragraph } from "../paragraph/paragraph";
 import { IPivotCardProps } from "./types/card";
 import { defaultSort } from "../utils/sort/sort";
-import { CollapseMinusIcon, CollapsePlusIcon } from "assets/svg/svg";
+import { CollapseMinusIcon, CollapsePlusIcon } from "../assets/svg";
 
 // import { ReactComponent as PlusIcon } from "/src/assets/svg/collapse-plus-icon.svg";
 export const PivotCard = ({

@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
-import { isEqual } from "lodash";
+import isEqual from "lodash.isEqual";
+
 import { Cell } from "./cell";
 interface IParagraphProps {
   item: any[];

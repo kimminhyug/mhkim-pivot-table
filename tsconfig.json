@@ -10,19 +10,23 @@
     "strictFunctionTypes": false,
     "strictNullChecks": false,
     "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
+
     "noImplicitAny": false,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
+    "sourceMap": false,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "src/lib/**/*.ts", "src/lib/**/*.tsx"],
   "exclude": ["node_modules"]
 }
