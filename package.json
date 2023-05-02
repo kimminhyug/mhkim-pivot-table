@@ -63,7 +63,7 @@
     "lib",
     "!dist/test"
   ],
-  "version": "0.2.3",
+  "version": "0.2.4",
   "main": "dist/index.js",
   "author": {
     "name": "Kim MinHyeok",
