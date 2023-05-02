@@ -6,7 +6,7 @@ import { IPivotProps } from "./types/pivot.types";
 import { defaultSort } from "./utils/sort/sort";
 import { ChoiceList } from "./utils/choice-list/choice-list";
 import { IChoiceListOption } from "./utils/choice-list/types/choice-list.types";
-import "index.scss";
+import "./index.scss";
 import groupBy from "lodash.groupby";
 export const Pivot = <T extends object>({
   pivotItem = [],

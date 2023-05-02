@@ -288,7 +288,9 @@ export const PivotCard = ({
             />
           </div>
 
-          <span style={{ minWidth: 135, marginLeft: 17 }}>{GroupHeader()}</span>
+          <span style={{ minWidth: 135, marginLeft: 17, textAlign: "left" }}>
+            {GroupHeader()}
+          </span>
           {isObjectTotal && (
             <div style={{ display: "flex", gap: "2%", width: "100%" }}>
               {Object.keys(items).map((key, index) => {
