@@ -74,4 +74,4 @@ This software is licensed under the [MIT](https://www.npmjs.com/package/mhkim-pi
 
 ## Read me Template
 
-write "readme" referring to "toast ui(nhn)".
+writed "readme" referring to "toast ui(nhn)".
