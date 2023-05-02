@@ -1,13 +1,13 @@
 import React, { useEffect, useCallback, useState } from "react";
 import { PivotCard } from "./card/card";
 // import { groupBy, Dictionary } from "lodash";
-import groupBy from "lodash.groupBy";
 
 import { IPivotProps } from "./types/pivot.types";
 import { defaultSort } from "./utils/sort/sort";
 import { ChoiceList } from "./utils/choice-list/choice-list";
 import { IChoiceListOption } from "./utils/choice-list/types/choice-list.types";
 import "index.scss";
+import groupBy from "lodash.groupby";
 export const Pivot = <T extends object>({
   pivotItem = [],
   groupKeys = [],
