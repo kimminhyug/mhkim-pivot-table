@@ -1,3 +1,7 @@
+
+[![npm package](https://img.shields.io/npm/v/mhkim-pivot-table?style=flat-square)](https://www.npmjs.com/package/mhkim-pivot-table)
+[![npm downloads](https://img.shields.io/npm/dt/mhkim-pivot-table?maxAge=2592000)](https://www.npmjs.com/package/mhkim-pivot-table)
+
 It is a product made out of boredom, so it may not be possible to respond immediately when a bug occurs.
 
 <h3 id="IPivotColDefs"> IPivotColDefs </h3>
