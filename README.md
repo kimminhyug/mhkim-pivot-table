@@ -38,6 +38,37 @@ I was so bored at home, so I implemented a table I was interested in.
 * **Dark Theme** : You can use the dark theme.
 <!-- ![UI](https://user-images.githubusercontent.com/37766175/121808649-8136a400-cc94-11eb-8674-812e170ccab5.png) -->
 
+### How To Use
+
+* **IPivotColDefs**
+
+| Key | Type | Description |
+| :---------: | :---------: | :---------: |
+| key | string | This is column key in pivotItem |
+| text | string | Text display on screen instead of key |
+| style | CSSProperties |  Column css | 
+| order | number | Column order |
+| orderBy | 'ASC' or 'DESC' | Not use |
+| showTotal | boolean | show total when grouping |
+| total | (def: IPivotColDefs, value: any) => string or number |  when calculate total this function called use this result |
+| formatter | (value: any) => any(string or number or React.ReactElement) | when render column data this function called use this result |
+| sort | (def: IPivotColDefs, items: any, order: 'asc' or 'desc') => Array.prototype.sort | when user click column header,  this sort function called use this result |
+
+* **Pivot**
+  
+| Option | Type | Description | Default Value |
+| :---------: | :---------: | :---------: | :---------: |
+| pivotItem | object[] | This is grid data, an array in the form of a directory  </br> [key(column key):string]:value | [] |
+| groupKeys | string[] | This is column key for grouping | [] |
+| defaultSelectedColumns | string[] | This is default column key to display on screen | [] |
+| defaultGroupKeys | string[] | This is default column key for grouping | [] |
+| colDefs | IPivotColDefs[] | This is column define list | [] |
+| showConfig | boolean | This option asks to display the configuration box | false |
+| maxGroupCount | number | This is max group count | 2 |
+| theme | 'light' or 'dark' | This is theme | "light" |
+| onChangeSelectedColumns | (list: string[]) => void | when user change selected column it is called | null |
+| onChangeGroupColumns | (list: string[]) => void | when user change group it is called | null |
+
 
 ## 🐾 Examples
 
